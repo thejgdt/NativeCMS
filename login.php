@@ -7,6 +7,9 @@ if (isset($_SESSION['username'])) {
     exit();
 }
 
+// Tambahkan koneksi database
+include('koneksi.php');
+
 // Proses login
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Ambil nilai yang dikirim dari form login
