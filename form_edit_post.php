@@ -23,11 +23,11 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
 
 // Proses update post jika form disubmit
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $judul = $_POST['title'];
-    $konten = $_POST['content'];
+    $title = $_POST['title'];
+    $content = $_POST['content'];
 
     // Query untuk update post
-    $sql = "UPDATE posts SET judul='$judul', konten='$konten' WHERE id=$id";
+    $sql = "UPDATE posts SET title='$title', content='$content' WHERE id=$id";
 
     if ($conn->query($sql) === TRUE) {
         echo "Post berhasil diupdate.";
@@ -51,15 +51,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 
+<?php
+include('header.php');
+?>
+
 <body class="bg-gray-100">
-    <div class="content max-w-4xl mx-auto mt-8 px-4">
+    <div class="container mx-auto py-8">
         <h1 class="text-2xl font-bold mb-4">Edit Post</h1>
-        <form action="" method="post">
-            <label for="judul">Judul</label><br>
-            <input type="text" id="judul" name="judul" value="<?php echo $post['judul']; ?>"><br>
-            <label for="konten">Konten</label><br>
-            <textarea id="konten" name="konten" rows="4" cols="50"><?php echo $post['konten']; ?></textarea><br><br>
-            <input type="submit" value="Update Post">
+        <form method="post" class="max-w-lg">
+            <div class="mb-4">
+                <label for="title" class="block text-gray-700">Judul</label>
+                <input type="text" id="title" name="title" class="w-full py-2 px-2 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" value="<?php echo $post['title']; ?>"><br>
+            </div>
+            <div class="mb-4">
+                <label for="content" class="block text-gray-700">Konten</label>
+                <textarea id="content" name="content" rows="4" cols="50" class="w-full py-2 px-2 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"><?php echo $post['content']; ?></textarea><br><br>
+            </div>
+            <div class="mb-4">
+                <input type="submit" value="Update Post" class="w-full bg-indigo-500 text-white font-semibold px-4 py-2 rounded hover:bg-indigo-600">
+            </div>
         </form>
     </div>
 </body>

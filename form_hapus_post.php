@@ -2,6 +2,9 @@
 // Sambungkan ke database
 include('koneksi.php');
 
+// Sambungkan dengan template header
+include('header.php');
+
 // Periksa apakah ada parameter id post yang dikirim melalui URL
 if (isset($_GET['id']) && !empty($_GET['id'])) {
     $id = $_GET['id'];

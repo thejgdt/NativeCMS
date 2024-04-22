@@ -10,7 +10,7 @@ $content = $_POST['content'];
 $sql = "INSERT INTO posts (title, content) VALUES ('$title', '$content')";
 if ($conn->query($sql) === TRUE) {
     // Jika berhasil ditambahkan, arahkan kembali ke halaman utama
-    header("Location: index.php");
+    header("Location: show_post.php");
     exit();
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;

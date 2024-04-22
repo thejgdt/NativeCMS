@@ -10,7 +10,7 @@
 </head>
 
 <?php
-include('header.php')
+include('header.php');
 ?>
 
 <body class="bg-gray-100">
@@ -30,6 +30,11 @@ include('header.php')
                 echo "<div class='bg-white p-6 mb-4 rounded shadow-md'>";
                 echo "<h2 class='text-xl font-bold mb-2'>" . $row["title"] . "</h2>";
                 echo "<p class='text-gray-700'>" . $row["content"] . "</p>";
+                // Tambahkan tombol edit dan hapus dengan tautan ke form_edit_post.php dan form_hapus_post.php
+                echo "<div class='mt-4 flex'>";
+                echo "<a href='form_edit_post.php?id=" . $row['id'] . "' class='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mr-2 rounded'>Edit</a>";
+                echo "<a href='form_hapus_post.php?id=" . $row['id'] . "' class='bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded'>Delete</a>";
+                echo "</div>";
                 echo "</div>";
             }
         } else {
