@@ -1,10 +1,6 @@
 <?php
 // Koneksi ke MySQL
-// Ganti apa yang perlu diganti
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "db_cms";
+include('variabel.php');
 
 $conn = new mysqli($servername, $username, $password);
 

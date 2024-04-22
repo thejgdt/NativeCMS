@@ -1,5 +1,5 @@
 <?php
-include('setup');
+include('variabel.php');
 
 // Buat koneksi
 $conn = new mysqli($servername, $username, $password, $dbname);
