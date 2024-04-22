@@ -48,6 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <input type="submit" value="Register" class="w-full bg-indigo-500 text-white font-semibold px-4 py-2 rounded hover:bg-indigo-600">
             </div>
         </form>
+        <p class="text-gray-700 text-sm">Already have an account? <a href="login.php" class="text-indigo-500 hover:underline">Login here</a></p>
     </div>
 </body>
 
