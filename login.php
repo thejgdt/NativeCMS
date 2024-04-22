@@ -61,6 +61,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <input type="submit" value="Login" class="w-full bg-indigo-500 text-white font-semibold px-4 py-2 rounded hover:bg-indigo-600">
             </div>
         </form>
+        <p class="text-gray-700 text-sm">Don't have an account? <a href="register.php" class="text-indigo-500 hover:underline">Create here</a></p>
 
         <?php
         if (isset($error)) echo "<p class='text-red-500'>$error</p>";
