@@ -1,8 +1,5 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "cms_db";
+include('setup');
 
 // Buat koneksi
 $conn = new mysqli($servername, $username, $password, $dbname);

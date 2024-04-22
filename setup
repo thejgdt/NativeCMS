@@ -1,0 +1,61 @@
+<?php
+// Koneksi ke MySQL
+// Ganti apa yang perlu diganti
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "db_cms";
+
+$conn = new mysqli($servername, $username, $password);
+
+// Periksa koneksi
+if ($conn->connect_error) {
+    die("Koneksi gagal: " . $conn->connect_error);
+}
+
+// Buat database
+$sql_create_db = "CREATE DATABASE IF NOT EXISTS $dbname";
+if ($conn->query($sql_create_db) === TRUE) {
+    echo "Database berhasil dibuat atau sudah ada. ";
+} else {
+    echo "Error saat membuat database: " . $conn->error;
+}
+
+// Gunakan database
+$sql_use_db = "USE $dbname";
+if ($conn->query($sql_use_db) === TRUE) {
+    echo "Berhasil menggunakan database. ";
+} else {
+    echo "Error saat menggunakan database: " . $conn->error;
+}
+
+// Buat tabel users
+$sql_create_table_users = "CREATE TABLE IF NOT EXISTS users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL,
+    password VARCHAR(255) NOT NULL
+)";
+
+if ($conn->query($sql_create_table_users) === TRUE) {
+    echo "Tabel users berhasil dibuat atau sudah ada. ";
+} else {
+    echo "Error saat membuat tabel users: " . $conn->error;
+}
+
+// Buat tabel postingan
+$sql_create_table_posts = "CREATE TABLE IF NOT EXISTS posts (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(100) NOT NULL,
+    content TEXT NOT NULL,
+    author VARCHAR(50) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+)";
+
+if ($conn->query($sql_create_table_posts) === TRUE) {
+    echo "Tabel posts berhasil dibuat atau sudah ada. ";
+} else {
+    echo "Error saat membuat tabel posts: " . $conn->error;
+}
+
+// Tutup koneksi MySQL
+$conn->close();
