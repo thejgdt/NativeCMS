@@ -23,7 +23,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $register_sql = "INSERT INTO users (username, password) VALUES ('$username', '$hashed_password')";
 
         if ($conn->query($register_sql) === TRUE) {
-            echo "Pendaftaran berhasil";
+            // Pendaftaran berhasil, arahkan ke index.php
+            header("Location: index.php");
+            exit();
         } else {
             echo "Error: " . $register_sql . "<br>" . $conn->error;
         }
