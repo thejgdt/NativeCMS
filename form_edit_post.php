@@ -13,11 +13,11 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
     if ($result->num_rows > 0) {
         $post = $result->fetch_assoc();
     } else {
-        echo "Post tidak ditemukan.";
+        echo "<script>alert('Post tidak ditemukan.');</script>";
         exit();
     }
 } else {
-    echo "ID post tidak valid.";
+    echo "<script>alert('ID post tidak valid.');</script>";
     exit();
 }
 
@@ -30,9 +30,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sql = "UPDATE posts SET title='$title', content='$content' WHERE id=$id";
 
     if ($conn->query($sql) === TRUE) {
-        echo "Post berhasil diupdate.";
+        echo "<script>alert('Post berhasil diupdate.');</script>";
     } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+        echo "<script>alert('Error: " . $sql . "<br>" . $conn->error . "');</script>";
     }
 
     // Tutup koneksi database

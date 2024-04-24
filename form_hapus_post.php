@@ -2,9 +2,6 @@
 // Sambungkan ke database
 include('koneksi.php');
 
-// Sambungkan dengan template header
-include('header.php');
-
 // Periksa apakah ada parameter id post yang dikirim melalui URL
 if (isset($_GET['id']) && !empty($_GET['id'])) {
     $id = $_GET['id'];
@@ -13,14 +10,17 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
     $sql = "DELETE FROM posts WHERE id=$id";
 
     if ($conn->query($sql) === TRUE) {
-        echo "Post berhasil dihapus.";
+        echo "<script>alert('Post berhasil dihapus.');</script>";
+        // Redirect user ke halaman show_post.php setelah post berhasil dihapus
+        header("Location: show_post.php");
+        exit();
     } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+        echo "<script>alert('Error: " . $sql . "<br>" . $conn->error . "');</script>";
     }
 
     // Tutup koneksi database
     $conn->close();
 } else {
-    echo "ID post tidak valid.";
+    echo "<script>alert('ID post tidak valid.');</script>";
     exit();
 }

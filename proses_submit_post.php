@@ -13,7 +13,7 @@ if ($conn->query($sql) === TRUE) {
     header("Location: show_post.php");
     exit();
 } else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
+    echo "<script>alert('Error: " . $sql . "<br>" . $conn->error . "');</script>";
 }
 
 // Tutup koneksi database

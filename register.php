@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($check_username_result->num_rows > 0) {
         // Username sudah terdaftar
-        echo "Username sudah terdaftar. Silakan gunakan username lain.";
+        echo "<script>alert('Username sudah terdaftar. Silakan gunakan username lain.');</script>";
     } else {
         // Hash password sebelum disimpan ke database
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             header("Location: index.php");
             exit();
         } else {
-            echo "Error: " . $register_sql . "<br>" . $conn->error;
+            echo "<script>alert('Error: " . $register_sql . "<br>" . $conn->error . "');</script>";
         }
     }
 }

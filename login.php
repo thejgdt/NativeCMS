@@ -33,11 +33,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             exit();
         } else {
             // Login gagal (password tidak cocok)
-            $error = "Username atau password salah";
+            $error = "Password salah";
         }
     } else {
         // Login gagal (username tidak ditemukan)
-        $error = "Username atau password salah";
+        $error = "Username salah";
     }
 }
 ?>
