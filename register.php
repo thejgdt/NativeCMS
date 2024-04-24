@@ -8,16 +8,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    // Hash password sebelum disimpan ke database
-    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+    // Periksa apakah username sudah terdaftar
+    $check_username_sql = "SELECT * FROM users WHERE username='$username'";
+    $check_username_result = $conn->query($check_username_sql);
 
-    // Tambahkan pengguna baru ke database
-    $sql = "INSERT INTO users (username, password) VALUES ('$username', '$hashed_password')";
-
-    if ($conn->query($sql) === TRUE) {
-        echo "Pendaftaran berhasil";
+    if ($check_username_result->num_rows > 0) {
+        // Username sudah terdaftar
+        echo "Username sudah terdaftar. Silakan gunakan username lain.";
     } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+        // Hash password sebelum disimpan ke database
+        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+        // Tambahkan pengguna baru ke database
+        $register_sql = "INSERT INTO users (username, password) VALUES ('$username', '$hashed_password')";
+
+        if ($conn->query($register_sql) === TRUE) {
+            echo "Pendaftaran berhasil";
+        } else {
+            echo "Error: " . $register_sql . "<br>" . $conn->error;
+        }
     }
 }
 ?>
