@@ -16,17 +16,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
+    // Hash password sebelum disimpan ke database
+    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
     // Periksa apakah username dan password cocok
-    $sql = "SELECT * FROM users WHERE username='$username' AND password='$password'";
+    $sql = "SELECT * FROM users WHERE username='$username'";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
-        // Login berhasil
-        $_SESSION['username'] = $username;
-        header("Location: index.php");
-        exit();
+        // Verifikasi password
+        $row = $result->fetch_assoc();
+        if (password_verify($password, $row['password'])) {
+            // Login berhasil
+            $_SESSION['username'] = $username;
+            header("Location: index.php");
+            exit();
+        } else {
+            // Login gagal (password tidak cocok)
+            $error = "Username atau password salah";
+        }
     } else {
-        // Login gagal
+        // Login gagal (username tidak ditemukan)
         $error = "Username atau password salah";
     }
 }

@@ -8,8 +8,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
+    // Hash password sebelum disimpan ke database
+    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
     // Tambahkan pengguna baru ke database
-    $sql = "INSERT INTO users (username, password) VALUES ('$username', '$password')";
+    $sql = "INSERT INTO users (username, password) VALUES ('$username', '$hashed_password')";
 
     if ($conn->query($sql) === TRUE) {
         echo "Pendaftaran berhasil";
