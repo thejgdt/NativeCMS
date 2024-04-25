@@ -28,7 +28,13 @@ include('header.php');
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
                 echo "<div class='bg-white p-6 mb-4 rounded shadow-md'>";
+                echo "<div class='flex justify-between'>";
                 echo "<h2 class='text-xl font-bold mb-2'>" . $row["title"] . "</h2>";
+                echo "<h2 class='text-sm flex flex-col'>";
+                echo "Pengarang <br>";
+                echo "<span class='text-xl font-bold'>" . $row["author"] . "</span>";
+                echo "</h2>";
+                echo "</div>";
                 echo "<p class='text-gray-700'>" . $row["content"] . "</p>";
                 // Tambahkan tombol edit dan hapus dengan tautan ke form_edit_post.php dan form_hapus_post.php
                 echo "<div class='mt-4 flex'>";

@@ -25,9 +25,10 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $title = $_POST['title'];
     $content = $_POST['content'];
+    $author = $_POST['author'];
 
     // Query untuk update post
-    $sql = "UPDATE posts SET title='$title', content='$content' WHERE id=$id";
+    $sql = "UPDATE posts SET title='$title', content='$content', author='$author' WHERE id=$id";
 
     if ($conn->query($sql) === TRUE) {
         echo "<script>alert('Post berhasil diupdate.');</script>";
@@ -61,11 +62,15 @@ include('header.php');
         <form method="post" class="max-w-lg">
             <div class="mb-4">
                 <label for="title" class="block text-gray-700">Judul</label>
-                <input type="text" id="title" name="title" class="w-full py-2 px-2 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" value="<?php echo $post['title']; ?>"><br>
+                <input type="text" id="title" name="title" class="w-full py-2 px-2 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" value="<?php echo $post['title']; ?>">
             </div>
             <div class="mb-4">
                 <label for="content" class="block text-gray-700">Konten</label>
-                <textarea id="content" name="content" rows="4" cols="50" class="w-full py-2 px-2 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"><?php echo $post['content']; ?></textarea><br><br>
+                <textarea id="content" name="content" rows="4" cols="50" class="w-full py-2 px-2 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"><?php echo $post['content']; ?></textarea>
+            </div>
+            <div class="mb-4">
+                <label for="author" class="block text-gray-700">Pengarang</label>
+                <input type="text" id="author" name="author" class="w-full py-2 px-2 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" value="<?php echo $post['author']; ?>">
             </div>
             <div class="mb-4">
                 <input type="submit" value="Update Post" class="w-full bg-indigo-500 text-white font-semibold px-4 py-2 rounded hover:bg-indigo-600">
